@@ -1,0 +1,13 @@
+proc-expose-386
+proc-expose-amd64
+proc-expose-arm
+proc-expose-arm64
+proc-expose-loong64
+proc-expose-mips
+proc-expose-mips64
+proc-expose-mips64le
+proc-expose-mipsle
+proc-expose-ppc64
+proc-expose-ppc64le
+proc-expose-riscv64
+proc-expose-s390x

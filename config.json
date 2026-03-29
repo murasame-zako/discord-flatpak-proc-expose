@@ -1,0 +1,33 @@
+{
+  "match": [
+    "(?i)\\.exe$"
+  ],
+  "ignores":[
+    "explorer.exe",
+    "winedevice.exe",
+    "services.exe",
+    "plugplay.exe",
+    "rpcss.exe",
+    "svchost.exe",
+    "conhost.exe",
+    "wineboot.exe",
+    "winecfg.exe",
+    "rundll32.exe",
+    "winemenubuilder.exe",
+    "cmd.exe",
+    "taskmgr.exe",
+    "steam.exe",
+    "steamwebhelper.exe",
+    "steamerrorreporter.exe",
+    "steamservice.exe",
+    "gfeclient.exe",
+    "nvcontainer.exe",
+    "tabtip.exe",
+    "xalia.exe"
+  ],
+  "rewrites": {
+    "csgo_linux": "C:\\csgo.exe",
+    "hl2_linux": "Z:\\hl2.exe",
+    "dota2": "Z:\\dota2.exe"
+  }
+}
