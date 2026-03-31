@@ -1,0 +1,48 @@
+name: Build and Release Go App
+
+# 1. 手动触发 action，并允许自定义 release 名称
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release 标签/名称 (例如: v1.0.0)'
+        required: true
+        type: string
+
+# 赋予 GITHUB_TOKEN 创建 Release 和上传文件的权限
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 2. 拉取项目代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 3. 准备 Go 语言环境
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.1' # 你可以根据你的项目修改为你需要的 Go 版本，例如 '1.20' 或 '>=1.21'
+          cache: true        # 开启缓存，加快后续构建速度
+
+      # 4. 运行你编写的 build.sh 脚本
+      - name: Run build script
+        run: |
+          # 确保脚本有可执行权限
+          chmod +x ./build.sh
+          # 执行构建脚本
+          ./build.sh
+
+      # 5. 创建 Release 并上传构建产物
+      - name: Create Release and Upload Artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          # 使用你手动触发时输入的名称作为 Tag 和 Release 标题
+          tag_name: ${{ inputs.release_tag }}
+          name: ${{ inputs.release_tag }}
+          files: proc-expose-*
+          generate_release_notes: true
